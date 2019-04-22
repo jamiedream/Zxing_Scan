@@ -1,1 +1,1 @@
-include ':app', ':zxing_android'
+include ':app', ':zxing_android', ':zxing_android_integration'

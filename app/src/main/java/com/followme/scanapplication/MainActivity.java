@@ -11,7 +11,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
-import com.followme.zxing_android.android_integration.IntentIntegrator;
+import com.followme.zxing_android_integration.IntentIntegrator;
 
 
 public class MainActivity extends AppCompatActivity {
