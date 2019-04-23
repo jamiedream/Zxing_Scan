@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">ScanApplication</string>
+
+    <string-array name="security_type">
+        <item>Nano</item>
+        <item>WEP</item>
+        <item>WPA/WPA2</item>
+    </string-array>
 </resources>
