@@ -4,10 +4,14 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -49,16 +53,26 @@ public class MainActivity extends AppCompatActivity {
         scanGetText();
         generateWifiCode();
         scanToConnectWifi();
-//        scanToConnectedWifi();
 
-        Button generateConnectedWifiCode = findViewById(R.id.generate_connected_wifi_code);
-        generateConnectedWifiCode.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        String ssid = getCurrentSsid();
+        if(ssid != null){
+            ((EditText) findViewById(R.id.ssid_text)).setText(ssid);
+        }
+    }
 
+    public String getCurrentSsid() {
+        String ssid = null;
+        ConnectivityManager connManager = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        if (networkInfo.isConnected()) {
+            final WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+            final WifiInfo connectionInfo = wifiManager.getConnectionInfo();
+            if (connectionInfo != null && !TextUtils.isEmpty(connectionInfo.getSSID())) {
+                ssid = connectionInfo.getSSID();
+                ssid = ssid.substring(1, ssid.length() - 1);
             }
-        });
-
+        }
+        return ssid;
     }
 
     private void scanGetText(){
@@ -109,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
         Button wifiCode = findViewById(R.id.generate_wifi_code);
         final Spinner spinner = findViewById(R.id.spinner);
         final String[] types = getResources().getStringArray(R.array.security_type);
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, types);
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, types);
         spinner.setAdapter(spinnerAdapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -133,8 +147,8 @@ public class MainActivity extends AppCompatActivity {
                 String pwdText = pwd.getText().toString();
                 CheckBox isHideCheckbox = findViewById(R.id.is_hide_ssid);
                 ImageView qrCode = findViewById(R.id.qr_code_preview);
-                String qrString = "";
                 if(ssidText.length() > 0){
+                    String qrString = "";
                     switch (spinner.getSelectedItem().toString()) {
                         case "Nano":
                             qrString = qrCodeUtil.getConfig("omit", ssidText, "", isHideCheckbox.isChecked());
@@ -142,15 +156,14 @@ public class MainActivity extends AppCompatActivity {
                         case "WEP":
                             if(pwdText.length() > 0) {
                                 qrString = qrCodeUtil.getConfig("WEP", ssidText, pwdText, isHideCheckbox.isChecked());
-                            }else qrString = "";
+                            }
                             break;
                         case "WPA/WPA2":
                             if(pwdText.length() > 0) {
                                 qrString = qrCodeUtil.getConfig("WPA", ssidText, pwdText, isHideCheckbox.isChecked());
-                            }else qrString = "";
+                            }
                             break;
                         default:
-                            qrString = "";
                             break;
                     }
 
@@ -198,7 +211,7 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, intent);
 
         //get scan result
-        if(resultCode == RESULT_OK){
+        if(resultCode == RESULT_OK && intent != null){
 
             switch (requestCode){
                 case SCAN_CODE:
@@ -206,9 +219,8 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case WIFI_SCAN_CODE:
 //                    scannedText.setText(intent.getStringExtra("SCAN_RESULT"));
-
                     String[] params = qrCodeUtil.getWifiConfig(intent.getStringExtra("SCAN_RESULT"));
-                    scannedSSID.setText("Connecting to SSID...... " + params[0]);
+                    scannedSSID.setText(String .format("Connecting to \nSSID...... %1$s\nPassword...... %2$s", params[0], params[1]));
                     WifiManager wifiManager = (WifiManager)getApplicationContext().getSystemService(Context.WIFI_SERVICE);
                     qrCodeUtil.connectToWifi(wifiManager, params[0], params[1], params[2], Boolean.parseBoolean(params[3]));
 

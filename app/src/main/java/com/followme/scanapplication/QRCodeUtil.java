@@ -21,6 +21,7 @@ import java.util.List;
 public class QRCodeUtil {
 
     private String TAG = QRCodeUtil.class.getSimpleName();
+
     /**
      * Decode
      *

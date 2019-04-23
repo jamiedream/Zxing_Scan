@@ -14,14 +14,6 @@
         android:text="click to scan"
         />
 
-    <!--<TextView
-        android:id="@+id/click"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Click!"
-        />-->
-
     <TextView
         android:id="@+id/scanned_text"
         android:layout_width="match_parent"
@@ -31,6 +23,14 @@
         android:text="scanned text"
         android:textColor="@color/black"
         />
+
+    <!--<Button-->
+        <!--android:id="@+id/generate_connected_wifi_code"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="generate connected wifi code"-->
+        <!--android:layout_below="@id/scanned_text"-->
+        <!--/>-->
 
     <Button
         android:id="@+id/generate_wifi_code"
