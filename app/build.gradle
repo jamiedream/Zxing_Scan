@@ -3,10 +3,10 @@ apply plugin: 'com.android.application'
 android {
 
     signingConfigs {
-        jojomarkets {
+        zxing_scan {
             keyAlias 'zxingscan'
             keyPassword 'zxingscan190426'
-            storeFile file('/Users/chunyingyen/Document/FollowMe/Zxing_Scan')
+            storeFile file('/Users/chunyingyen/Documents/FollowMe/Zxing_Scan/zxing_scan.keystore')
             storePassword 'zxingscan190426'
         }
     }
@@ -35,7 +35,7 @@ android {
                     outputFileName = "${formattedDate}-${name}.apk"
                 }
             }
-            signingConfig signingConfigs.jojomarkets
+            signingConfig signingConfigs.zxing_scan
         }
     }
 }
