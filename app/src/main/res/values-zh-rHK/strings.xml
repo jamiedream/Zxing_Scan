@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">QR扫描&amp;产生</string>
+
+    <string name="generate_qr">产生 QR code</string>
+    <string name="enter_qr">输入 QR code 内容</string>
+    <string name="click_scan">扫描</string>
+    <string name="scanned_text">扫描到的文字</string>
+    <string name="generate_wifi">产生 WIFI QR code</string>
+    <string name="enter_ssid">输入SSID</string>
+    <string name="enter_password">输入password</string>
+    <string name="is_hide">是否为隐藏SSID？</string>
+    <string name="scan_connect_wifi">扫描以连接WIFI</string>
+    <string name="connect_detail">连接到......\nSSID...... %1$s\n密码...... %2$s</string>
+
+    <string-array name="license">
+        <item>Icon 来源 https://creativemarket.com/eucalyp from Eucalyp</item>
+        <item>Zxing:https://github.com/zxing/zxing</item>
+    </string-array>
+</resources>

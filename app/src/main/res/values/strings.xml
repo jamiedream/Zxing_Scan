@@ -1,9 +1,19 @@
 <resources>
-    <string name="app_name">ScanApplication</string>
+    <string name="app_name">QRScan&amp;Gene</string>
 
-    <string-array name="security_type">
-        <item>Nano</item>
-        <item>WEP</item>
-        <item>WPA/WPA2</item>
+    <string name="generate_qr">generate QR code</string>
+    <string name="enter_qr">enter QR code text</string>
+    <string name="click_scan">click to Scan</string>
+    <string name="scanned_text">scanned text</string>
+    <string name="generate_wifi">generate WIFI QR code</string>
+    <string name="enter_ssid">enter SSID</string>
+    <string name="enter_password">enter password</string>
+    <string name="is_hide">is hide SSID</string>
+    <string name="scan_connect_wifi">scan to Connect WIFI</string>
+    <string name="connect_detail">Connecting to\nSSID...... %1$s\nPassword...... %2$s</string>
+
+    <string-array name="license">
+        <item>Icon made by https://creativemarket.com/eucalyp from Eucalyp</item>
+        <item>Zxing:https://github.com/zxing/zxing</item>
     </string-array>
 </resources>
