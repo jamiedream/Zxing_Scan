@@ -1,102 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    >
-
-    <Button
-        android:id="@+id/click"
+    tools:context=".MainActivity">
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="click to scan"
-        />
+        android:layout_height="match_parent"
+        >
 
-    <TextView
-        android:id="@+id/scanned_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/click"
-        android:layout_centerInParent="true"
-        android:text="scanned text"
-        android:textColor="@color/black"
-        />
+        <Button
+            android:id="@+id/generate_click"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/generate_qr"
+            android:textAllCaps="false"
+            />
 
-    <!--<Button-->
-        <!--android:id="@+id/generate_connected_wifi_code"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="generate connected wifi code"-->
-        <!--android:layout_below="@id/scanned_text"-->
-        <!--/>-->
+        <EditText
+            android:id="@+id/generate_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/enter_qr"
+            android:layout_below="@id/generate_click"
+            />
 
-    <Button
-        android:id="@+id/generate_wifi_code"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="generate wifi code"
-        android:layout_below="@id/scanned_text"
-        />
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/generate_wifi_code"
-        />
+        <Button
+            android:id="@+id/click"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/click_scan"
+            android:layout_below="@id/generate_text"
+            android:textAllCaps="false"
+            />
 
-    <EditText
-        android:id="@+id/ssid_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="enter ssid"
-        android:layout_below="@id/spinner"
-        />
+        <TextView
+            android:id="@+id/scanned_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/click"
+            android:layout_centerInParent="true"
+            android:hint="@string/scanned_text"
+            android:textColor="@color/black"
+            />
 
-    <EditText
-        android:id="@+id/pwd_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="enter password"
-        android:layout_below="@id/ssid_text"
-        />
+        <!--<Button-->
+            <!--android:id="@+id/generate_connected_wifi_code"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="generate connected wifi code"-->
+            <!--android:layout_below="@id/scanned_text"-->
+            <!--/>-->
 
-    <CheckBox
-        android:id="@+id/is_hide_ssid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/pwd_text"/>
+        <Button
+            android:id="@+id/generate_wifi_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/generate_wifi"
+            android:layout_below="@id/scanned_text"
+            android:textAllCaps="false"
+            />
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/generate_wifi_code"
+            />
 
-    <TextView
-        android:id="@+id/hide_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="is hide ssid"
-        android:layout_toEndOf="@id/is_hide_ssid"
-        android:layout_below="@id/pwd_text"
-        />
+        <EditText
+            android:id="@+id/ssid_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/enter_ssid"
+            android:layout_below="@id/spinner"
+            />
 
-    <Button
-        android:id="@+id/scan_to_connect_wifi"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="scan to connect wifi"
-        android:layout_below="@id/is_hide_ssid"
-        />
+        <EditText
+            android:id="@+id/pwd_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/enter_password"
+            android:layout_below="@id/ssid_text"
+            />
 
-    <ImageView
-        android:id="@+id/qr_code_preview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/scan_to_connect_wifi"
-        android:layout_centerInParent="true"
-        />
+        <CheckBox
+            android:id="@+id/is_hide_ssid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/pwd_text"/>
 
-    <TextView
-        android:id="@+id/scaned_ssid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/qr_code_preview"/>
+        <TextView
+            android:id="@+id/hide_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/is_hide"
+            android:layout_toEndOf="@id/is_hide_ssid"
+            android:layout_below="@id/pwd_text"
+            />
 
-</RelativeLayout>
+        <Button
+            android:id="@+id/scan_to_connect_wifi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/scan_connect_wifi"
+            android:layout_below="@id/is_hide_ssid"
+            android:textAllCaps="false"
+            />
+
+        <ImageView
+            android:id="@+id/qr_code_preview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/scan_to_connect_wifi"
+            android:layout_centerInParent="true"
+            />
+
+        <TextView
+            android:id="@+id/scaned_ssid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/qr_code_preview"/>
+
+    </RelativeLayout>
+</ScrollView>

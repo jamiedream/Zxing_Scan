@@ -3,6 +3,7 @@ package com.followme.scanapplication;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -13,7 +14,10 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -41,6 +45,29 @@ public class MainActivity extends AppCompatActivity {
     private TextView scannedText;
     private TextView scannedSSID;
     private QRCodeUtil qrCodeUtil;
+    private EditText generateText;
+    private ImageView qrCode;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.about){
+            String[] array = getResources().getStringArray(R.array.license);
+            StringBuilder license = new StringBuilder();
+            for(int num = 0; num < array.length; num++){
+                license.append(array[num] + "\n");
+            }
+            new ConfirmDialog().showLeftConfirmDialog(getSupportFragmentManager(),
+                    null, true, license,null);
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @SuppressLint("ClickableViewAccessibility")
     @Override

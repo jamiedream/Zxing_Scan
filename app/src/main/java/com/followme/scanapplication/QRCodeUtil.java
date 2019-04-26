@@ -159,7 +159,6 @@ public class QRCodeUtil {
         WifiConfiguration config = new WifiConfiguration();
         config.SSID = "\"" + ssid + "\"";
 
-        Log.i(TAG, type);
         switch (type){
             case "Nano":
                 config.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.NONE);
