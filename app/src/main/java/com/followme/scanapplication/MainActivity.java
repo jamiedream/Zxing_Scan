@@ -207,9 +207,8 @@ public class MainActivity extends AppCompatActivity {
                 String ssidText = ssid.getText().toString();
                 String pwdText = pwd.getText().toString();
                 CheckBox isHideCheckbox = findViewById(R.id.is_hide_ssid);
-                ImageView qrCode = findViewById(R.id.qr_code_preview);
                 if(ssidText.length() > 0){
-                    String qrString = "";
+                    String qrString = null;
                     switch (spinner.getSelectedItem().toString()) {
                         case "Nano":
                             qrString = qrCodeUtil.getConfig("omit", ssidText, "", isHideCheckbox.isChecked());
@@ -221,13 +220,15 @@ public class MainActivity extends AppCompatActivity {
                             break;
                         case "WPA/WPA2":
                             if(pwdText.length() > 0) {
-                                qrString = qrCodeUtil.getConfig("WPA", ssidText, pwdText, isHideCheckbox.isChecked());
+                                //WPA and WPA2 different?
+                                qrString = qrCodeUtil.getConfig("WPA2", ssidText, pwdText, isHideCheckbox.isChecked());
                             }
                             break;
                         default:
                             break;
                     }
 
+                    if(qrString == null) return;
                     qrCode.setImageBitmap(
                             qrCodeUtil.textToImageEncode(
                                     new WeakReference<Context>(MainActivity.this),
