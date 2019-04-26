@@ -1,0 +1,11 @@
+This app helps you to...
+Generate QR code in any text;
+Scan QR code to obtain text;
+Generate WIFI QR code for sharing to other people.
+Connect WIFI once scanned WIFI QR code.
+
+
+Permission require as follow:
+ACCESS_NETWORK_STATE: obtain information about current WIFI.
+CHANGE_WIFI_STATE: enable WIFI when scanned WIFI QR code.
+ACCESS_WIFI_STATE: change WIFI state after scanned WIFI QR code.

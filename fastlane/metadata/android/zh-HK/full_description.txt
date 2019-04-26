@@ -1,0 +1,10 @@
+這個APP提供以下功能：
+產生文字QR code
+掃描QR code文字內容
+產生WIFI QR code 以分享給他人
+掃描WIFI QR code並直接連接WIFI
+
+需要以下授權：
+ACCESS_NETWORK_STATE: 取得已連接WIFI資訊
+CHANGE_WIFI_STATE: 當掃描WIFI QR code時且WIFI未開啟時， 開啟WIFI
+ACCESS_WIFI_STATE: 連接WIFI

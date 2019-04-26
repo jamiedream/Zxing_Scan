@@ -11,6 +11,8 @@
 /build
 /captures
 .externalNativeBuild
+*.md
+
 
 # Built application files
 *.apk
@@ -20,9 +22,4 @@
 # Log Files
 *.log
 
-# fastlane
-fastlane/report.xml
-fastlane/Preview.html
-fastlane/screenshots
-fastlane/test_output
-fastlane/readme.md
+
