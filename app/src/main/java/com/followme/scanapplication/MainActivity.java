@@ -75,11 +75,27 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        //transparent status bar
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN, WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN);
+
+        generateText = findViewById(R.id.generate_text);
+        qrCode = findViewById(R.id.qr_code_preview);
+
         qrCodeUtil = new QRCodeUtil();
 
+        generateCode();
         scanGetText();
         generateWifiCode();
         scanToConnectWifi();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        generateText.setText("");
 
         String ssid = getCurrentSsid();
         if(ssid != null){
@@ -100,6 +116,24 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         return ssid;
+    }
+
+    private void generateCode(){
+        Button generateCode = findViewById(R.id.generate_click);
+        generateCode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(generateText.getText().toString().length() > 0){
+                    qrCode.setImageBitmap(
+                            qrCodeUtil.textToImageEncode(
+                                    new WeakReference<Context>(MainActivity.this),
+                                    generateText.getText().toString(),
+                                    getCodeDimension()
+                            )
+                    );
+                }
+            }
+        });
     }
 
     private void scanGetText(){
