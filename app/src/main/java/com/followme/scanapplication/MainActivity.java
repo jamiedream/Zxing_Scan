@@ -281,10 +281,12 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case WIFI_SCAN_CODE:
 //                    scannedText.setText(intent.getStringExtra("SCAN_RESULT"));
-                    String[] params = qrCodeUtil.getWifiConfig(intent.getStringExtra("SCAN_RESULT"));
-                    scannedSSID.setText(String .format("Connecting to \nSSID...... %1$s\nPassword...... %2$s", params[0], params[1]));
-                    WifiManager wifiManager = (WifiManager)getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-                    qrCodeUtil.connectToWifi(wifiManager, params[0], params[1], params[2], Boolean.parseBoolean(params[3]));
+                    if(intent.getStringExtra("SCAN_RESULT").startsWith("WIFI:")) {
+                        String[] params = qrCodeUtil.getWifiConfig(intent.getStringExtra("SCAN_RESULT"));
+                        scannedSSID.setText(String.format(getString(R.string.connect_detail), params[0], params[1]));
+                        WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+                        qrCodeUtil.connectToWifi(wifiManager, params[0], params[1], params[2], Boolean.parseBoolean(params[3]));
+                    }
 
                     break;
                 default:
