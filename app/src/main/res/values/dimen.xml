@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="btnPaddingTop">6dp</dimen>
+    <dimen name="btnPaddingStart">18dp</dimen>
+    <dimen name="btnPaddingEnd">18dp</dimen>
+    <dimen name="btnPaddingBottom">6dp</dimen>
+</resources>
