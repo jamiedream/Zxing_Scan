@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
         new PermissionUtil().checkPermossion(
                 new WeakReference<Activity>(this),
                 Manifest.permission.ACCESS_COARSE_LOCATION,
-                Build.VERSION_CODES.O,
+                Build.VERSION_CODES.O_MR1,
                 PermissionUtil.PERMISSIONS_REQUEST_WRITE);
 
         generateText = findViewById(R.id.generate_text);
