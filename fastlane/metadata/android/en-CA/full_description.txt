@@ -6,6 +6,7 @@ Connect WIFI once scanned WIFI QR code.
 
 
 Permission require as follow:
+ACCESS_COARSE_LOCATION: obtain information about current WIFI if system above Android Q.
 ACCESS_NETWORK_STATE: obtain information about current WIFI.
 CHANGE_WIFI_STATE: enable WIFI when scanned WIFI QR code.
 ACCESS_WIFI_STATE: change WIFI state after scanned WIFI QR code.

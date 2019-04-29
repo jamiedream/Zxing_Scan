@@ -17,29 +17,45 @@ default_platform(:android)
 
 platform :android do
 
-  before_all do
+    before_all do
     gradle(task: "clean")
-  end
+    end
 
-  def date_string()
+    def date_string()
       Time.now.strftime("%m/%d/%Y")
-  end
+    end
 
-  desc "Build local released apk and send msg to @SlowLaneBot"
-  lane :assemble_release do
+    desc "Build local released apk and send msg to @SlowLaneBot"
+    lane :assemble_release do
     gradle(
         task: "assemble",
         build_type: "release"
     )
 
-  	telegram(
-        token: "token",
-        chat_id: "chat id",
-        text: "Zxing scan apk built on #{date_string()}."
+    telegram(
+        token: "#$token",
+        chat_id: "#$chatId",
+        text: "Release zxing scan apk built on #{date_string()}."
     )
-  end
+    end
 
-  desc "Deploy a new version to the Google Play and send msg to @SlowLaneBot"
+    desc "Deploy a new version to the Google Play and send msg to @SlowLaneBot"
+    lane :beta do
+        gradle(
+          task: "assemble",
+          build_type: "release"
+        )
+
+        upload_to_play_store(track: 'beta')
+
+        telegram(
+          token: "#$token",
+          chat_id: "#$chatId",
+          text: "Beta zxing scan apk built on #{date_string()}."
+        )
+    end
+
+    desc "Deploy a new version to the Google Play and send msg to @SlowLaneBot"
     lane :deploy do
         gradle(
             task: "assemble",
@@ -48,25 +64,16 @@ platform :android do
 
         upload_to_play_store
 
-      	telegram(
-            token: "token",
-            chat_id: "chat id",
-            text: "Zxing scan apk built on #{date_string()}."
+        telegram(
+            token: "#$token",
+            chat_id: "#$chatId",
+            text: "Deploy zxing scan apk built on #{date_string()}."
         )
     end
 
-  desc "Runs all the tests"
+    desc "Runs all the tests"
     lane :test do
       gradle(task: "test")
-    end
-
-    desc "Submit a new Beta Build to Crashlytics Beta"
-    lane :beta do
-      gradle(task: "clean assembleRelease")
-      crashlytics
-
-      # sh "your_script.sh"
-      # You can also use other beta testing services here
     end
 
 end
