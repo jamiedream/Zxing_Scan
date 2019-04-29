@@ -5,7 +5,9 @@
 
 package com.followme.scanapplication;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -14,6 +16,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -83,6 +86,13 @@ public class MainActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         //transparent status bar
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN, WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN);
+
+        //permission
+        new PermissionUtil().checkPermossion(
+                new WeakReference<Activity>(this),
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+                Build.VERSION_CODES.O,
+                PermissionUtil.PERMISSIONS_REQUEST_WRITE);
 
         generateText = findViewById(R.id.generate_text);
         qrCode = findViewById(R.id.qr_code_preview);
