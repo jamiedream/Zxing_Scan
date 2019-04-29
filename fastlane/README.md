@@ -20,6 +20,11 @@ or alternatively using `brew cask install fastlane`
 ```
 fastlane android assemble_release
 ```
+Build local released apk and send msg to @SlowLaneBot
+### android deploy
+```
+fastlane android deploy
+```
 Deploy a new version to the Google Play and send msg to @SlowLaneBot
 ### android test
 ```
